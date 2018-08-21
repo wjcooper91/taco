@@ -1,22 +1,23 @@
-// Set up MySQL connection.
-var mysql = require("mysql");
+// Pull in required dependencies
+var mysql = require('mysql');
 
+// Create the MySQL connection object
 var connection = mysql.createConnection({
-  host: "localhost",
-  port: 8889,
-  user: "root",
-  password: "root",
-  database: "taco_db"
-});
+		port: 8889,
+		host: 'localhost',
+		user: 'root',
+		password: 'root',
+		database: 'tacos_db'
+	});
 
-// Make connection.
+// Make the connection to MySQL
 connection.connect(function(err) {
   if (err) {
-    console.error("error connecting: " + err.stack);
+    console.error('ERROR: MySQL connection error -- ' + err.stack + '\n\n');
     return;
   }
-  console.log("connected as id " + connection.threadId);
+  console.log('Connected to MySQL database as id ' + connection.threadId + '\n\n');
 });
 
-// Export connection for our ORM to use.
+// Export connection for ORM use
 module.exports = connection;

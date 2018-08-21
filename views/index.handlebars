@@ -1,24 +1,31 @@
-<h1>Eat-Da-Taco!</h1>
+<header>
+  <div class="header">
+    <h1>Eat-Da-Tacos!</h1>
+  </div>
+</header>
+<div class="topTaco">
+  <img src="/assets/img/tacos.png">
+</div>
 
 <main>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col s6">
         {{#each tacos}}
           {{#unless this.devoured}}
             <div>
               <form action="/tacos/{{this.id}}?_method=PUT" method="POST">
-                <button type="submit" class='tacoAvailable'> {{this.taco_name}}</button>
+                <button type="submit" class=''>{{this.taco_name}}</button>
               </form>
             </div>
           {{/unless}}
         {{/each}}
       </div>
 
-      <div class="col s6">
+      <div class="col s6 devouredTacos">
         {{#each tacos}}
           {{#if this.devoured}}
-            <div class='tacoEaten'>
+            <div class=''>
               <div>
                 {{this.taco_name}}
               </div>
@@ -30,13 +37,13 @@
   </div>
 </main>
 
-<h2>Add A Taco Option</h2>
+<h2>Add A Taco</h2>
 
 <div class="row">
-  <div class="col s12">
+  <div class="col s12 addContent">
     <form action="/tacos" method="POST">
-      <input type="text" id="name" name="taco_name" placeholder="Uber Delicious Taco">
-      <button type="submit" class="addTacoButton">Add The Taco</button>
+      <input type="text" id="name" name="taco_name" placeholder="Taco">
+      <button type="submit" class="">Add The Taco</button>
     </form>
   </div>
 </div>

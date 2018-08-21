@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	
+	<title>Eat-Da-Taco!</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Passion+One" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="../models/taco.js"></script>
+</head>
+<body>
+        <h1>Eat-Da-Taco!</h1>
+
+        <main>
+          <div class="container">
+            <div class="row">
+              <div class="col s6">
+                {{#each tacos}}
+                  {{#unless this.devoured}}
+                    <div>
+                      <form action="/tacos/{{this.id}}?_method=PUT" method="POST">
+                        <button type="submit" class='tacoAvailable'> {{this.taco_name}}</button>
+                      </form>
+                    </div>
+                  {{/unless}}
+                {{/each}}
+              </div>
+        
+              <div class="col s6">
+                {{#each tacos}}
+                  {{#if this.devoured}}
+                    <div class='tacoEaten'>
+                      <div>
+                        {{this.taco_name}}
+                      </div>
+                    </div>
+                  {{/if}}
+                {{/each}}
+              </div>
+            </div>
+          </div>
+        </main>
+        
+        <h2>Add A Taco Option</h2>
+        
+        <div class="row">
+          <div class="col s12">
+            <form action="/tacos" method="POST">
+              <input type="text" id="name" name="taco_name" placeholder="Uber Delicious Taco">
+              <button type="submit" class="addTacoButton">Add The Taco</button>
+            </form>
+          </div>
+        </div>
+</body>
+</html>
